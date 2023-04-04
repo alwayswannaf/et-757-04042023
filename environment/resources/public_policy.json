@@ -1,0 +1,26 @@
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyOneObjectIfRequestNotSigned",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::c72669a1464081l3877795t1w549186031903-s3bucket-xob545cwurbv/report.html",
+            "Condition": {
+                "StringNotEquals": {
+                    "s3:authtype": "REST-QUERY-STRING"
+                }
+            }
+        },
+        {
+            "Sid": "AllowOAIAccess",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EIUUS6EIH6EWU"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::c72669a1464081l3877795t1w549186031903-s3bucket-xob545cwurbv/*"
+        }
+    ]
+}
